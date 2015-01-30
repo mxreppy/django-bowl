@@ -1,14 +1,14 @@
-from django.db import models
+# from django.db import models
 
 # Create your models here.
 
 class Game():
 
     def __init__(self):
-        self.accumulator = 0;
+        self.accumulator = []
 
     def roll(self, pins):
-        self.accumulator += pins
+        self.accumulator.append(pins)
 
     def score(self):
-        return self.accumulator
+        return sum(self.accumulator)
