@@ -3,8 +3,12 @@ from django.db import models
 # Create your models here.
 
 class Game():
+
+    def __init__(self):
+        self.accumulator = 0;
+
     def roll(self, pins):
-        pass
+        self.accumulator += pins
 
     def score(self):
-        return -1
+        return self.accumulator
