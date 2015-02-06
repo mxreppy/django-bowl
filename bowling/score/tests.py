@@ -4,7 +4,6 @@ from score.models import Game
 
 
 class BowlingTest(TestCase):
-
     def setUp(self):
         self.game = Game()
 
@@ -34,6 +33,22 @@ class BowlingTest(TestCase):
         # 5 --> 5
         # 5 --> spare (undefined or 10?)
         # 5 --> spare worth 15, total 20
+        # runme
 
         self.assertEqual(self.game.score(), 20)
+
+    def test_spare_two(self):
+        self._roll_many(pins=5, number=3)
+        self._roll_many(pins=0, number=1)
+        self._roll_many(pins=5, number=3)
+        self._roll_many(pins=0, number=13)
+
+        self.assertEqual(self.game.score(), 40)
+
+    def test_strike(self):
+        self._roll_many(pins=10, number=1)
+        self._roll_many(pins=4, number=2)
+        self._roll_many(pins=0, number=16)
+
+        self.assertEqual(self.game.score(), 18+8)
 
