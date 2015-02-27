@@ -50,5 +50,34 @@ class BowlingTest(TestCase):
         self._roll_many(pins=4, number=2)
         self._roll_many(pins=0, number=16)
 
-        self.assertEqual(self.game.score(), 18+8)
+        self.assertEqual(self.game.score(), 18 + 8)
 
+    def test_strike_second_frame(self):
+        self._roll_many(pins=4, number=2)
+        self._roll_many(pins=10, number=1)
+        self._roll_many(pins=4, number=2)
+        self._roll_many(pins=0, number=14)
+
+        self.assertEqual(self.game.score(), 8 + 18 + 8)
+
+    def test_strike_then_spare(self):
+        self._roll_many(pins=10, number=1)
+        self._roll_many(pins=5, number=2)
+        self._roll_many(pins=3, number=2)
+        self._roll_many(pins=0, number=14)
+
+        self.assertEqual(self.game.score(), 20 + 13 + 6)
+
+    def _test_all_strikes(self):
+        self._roll_many(pins=10, number=12)
+
+        self.assertEqual(self.game.score(), 300)
+
+    def _test_from_wiki(self):
+        # 3,4,6,4,7,1,4,5,10,4,6,10,10,10,5,5,3 = 169
+
+        for x in [3, 4, 6, 4, 7, 1, 4, 5, 10, 4, 6, 10, 10, 10, 5, 5, 3]:
+            self.game.roll(x)
+            print('rolling %s' % x)
+
+        self.assertEqual(self.game.score(), 169)

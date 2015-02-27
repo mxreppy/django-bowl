@@ -14,7 +14,9 @@ class Game():
 
         counter = 0
 
-        while True and counter < len(self.acc):
+        frames = 0
+
+        while True and frames <= 10:
 
             # strike
             if self.acc[counter] == 10:
@@ -27,5 +29,7 @@ class Game():
             else:
                 sum += self.acc[counter] + self.acc[counter + 1]
                 counter += 2
+
+            frames += 1
 
         return sum
