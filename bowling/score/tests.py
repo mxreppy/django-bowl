@@ -68,7 +68,7 @@ class BowlingTest(TestCase):
 
         self.assertEqual(self.game.score(), 20 + 13 + 6)
 
-    def _test_all_strikes(self):
+    def test_all_strikes(self):
         self._roll_many(pins=10, number=12)
 
         self.assertEqual(self.game.score(), 300)

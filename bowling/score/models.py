@@ -10,7 +10,7 @@ class Game():
 
     def score(self):
         # return self._score_procedural()
-        return self._score_recursive_worker(0, self.acc)
+        return self._score_recursive_worker(0, 1, self.acc)
 
     def _is_strike(self, list_in):
         return list_in[0] == 10
@@ -18,23 +18,22 @@ class Game():
     def _is_spare(self, list_in):
         return list_in[0] + list_in[1] == 10
 
-    def _score_recursive_worker(self, summer, list_in):
+    def _score_recursive_worker(self, summer=0, frames=1, list_in=[]):
         # recursive
         # if list_in is emtpy return summer
-        result = 0
-        if len(list_in) == 0:
-            result = summer
+        if frames > 10:
+            pass
         elif self._is_strike(list_in):
-            result = summer + list_in[0] + list_in[1] + list_in[2] + \
-                     self._score_recursive_worker(summer, list_in[1:])
+            summer = summer + list_in[0] + list_in[1] + list_in[2] + \
+                self._score_recursive_worker(summer, frames + 1, list_in[1:])
         elif self._is_spare(list_in):
-            result = summer + list_in[0] + list_in[1] + list_in[2] + \
-                     self._score_recursive_worker(summer, list_in[2:])
+            summer = summer + list_in[0] + list_in[1] + list_in[2] + \
+                self._score_recursive_worker(summer, frames + 1, list_in[2:])
         else:
-            result = summer + list_in[0] + list_in[1] + \
-                     self._score_recursive_worker(summer, list_in[2:])
+            summer = summer + list_in[0] + list_in[1] + \
+                self._score_recursive_worker(summer, frames + 1, list_in[2:])
 
-        return result
+        return summer
 
     def _score_procedural(self):
         # return sum(self.acc)
