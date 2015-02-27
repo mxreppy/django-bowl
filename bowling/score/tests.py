@@ -75,6 +75,7 @@ class BowlingTest(TestCase):
 
     def _test_from_wiki(self):
         # 3,4,6,4,7,1,4,5,10,4,6,10,10,10,5,5,3 = 169
+        # really?
 
         for x in [3, 4, 6, 4, 7, 1, 4, 5, 10, 4, 6, 10, 10, 10, 5, 5, 3]:
             self.game.roll(x)

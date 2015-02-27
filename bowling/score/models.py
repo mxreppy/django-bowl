@@ -10,26 +10,26 @@ class Game():
 
     def score(self):
         # return sum(self.acc)
-        sum = 0
+        _sum = 0
 
         counter = 0
 
         frames = 0
 
-        while True and frames <= 10:
+        while True and frames <= 10 and counter < len(self.acc):
 
             # strike
             if self.acc[counter] == 10:
-                sum += 10 + self.acc[counter + 1] + self.acc[counter + 2]
+                _sum += 10 + self.acc[counter + 1] + self.acc[counter + 2]
                 counter += 1
             # spare
             elif self.acc[counter] + self.acc[counter + 1] == 10:
-                sum += 10 + self.acc[counter + 2]
+                _sum += 10 + self.acc[counter + 2]
                 counter += 2
             else:
-                sum += self.acc[counter] + self.acc[counter + 1]
+                _sum += self.acc[counter] + self.acc[counter + 1]
                 counter += 2
 
             frames += 1
 
-        return sum
+        return _sum
